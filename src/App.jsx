@@ -103,7 +103,6 @@ function HomePage({
             </p>
             <div className="hero-buttons">
               <Link to="/coursework" className="btn btn-primary">View Coursework</Link>
-              <a href="/resume.pdf" className="btn btn-secondary" target="_blank" rel="noreferrer">Download Resume</a>
             </div>
           </div>
         </section>
