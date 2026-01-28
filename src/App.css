@@ -313,6 +313,37 @@ section h2 {
   transition: background-color 0.3s ease;
 }
 
+.term-selector {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 2rem 0 2.5rem;
+}
+
+.term-label {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+.term-select {
+  width: 100%;
+  max-width: 520px;
+  padding: 0.85rem 1rem;
+  border-radius: 10px;
+  border: 1px solid var(--border-secondary);
+  background: var(--bg-tertiary);
+  color: var(--text-secondary);
+  font-size: 1rem;
+  transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.term-select:focus {
+  outline: none;
+  border-color: var(--accent);
+  background: var(--bg-secondary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
 .semester {
   margin-bottom: 3rem;
 }
