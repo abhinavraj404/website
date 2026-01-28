@@ -188,9 +188,6 @@ function HomePage({
               NLP research, or hardware engineering.
             </p>
             <div className="contact-info">
-              <a href="mailto:araj10@illinois.edu" className="contact-link">
-                araj10@illinois.edu
-              </a>
               <p className="contact-address">1012 W Illinois St, Urbana</p>
               <a 
                 href="https://github.com/abhinav10raj" 
@@ -201,9 +198,6 @@ function HomePage({
                 Follow on GitHub
               </a>
             </div>
-            <a href="mailto:araj10@illinois.edu" className="btn btn-primary">
-              Email Me
-            </a>
           </div>
         </section>
       </main>
