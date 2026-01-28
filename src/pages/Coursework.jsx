@@ -8,16 +8,19 @@ function Coursework() {
       <header className="header">
         <div className="container header-container">
           <Link to="/" className="system-label" style={{ textDecoration: 'none', color: 'inherit' }}>
-            AR.init()
+            Signal & Noise
           </Link>
-          <Link to="/" className="btn btn-secondary" style={{ textDecoration: 'none' }}>
-            Back to Home
-          </Link>
+          <nav className="header-nav">
+            <Link to="/" className="header-link">
+              Home
+            </Link>
+            <span className="header-link header-link-active">Coursework</span>
+          </nav>
         </div>
       </header>
 
       <main>
-        <section className="coursework" style={{ paddingTop: '6rem' }}>
+        <section className="coursework reveal" style={{ paddingTop: '6rem' }}>
           <div className="container">
             <h2>Coursework at University of Illinois at Urbana-Champaign</h2>
             <p className="section-subtitle">

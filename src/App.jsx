@@ -25,11 +25,11 @@ function App() {
       })
     }, observerOptions)
 
-    const sections = document.querySelectorAll('section')
-    sections.forEach(section => observer.observe(section))
+    const revealTargets = document.querySelectorAll('.reveal')
+    revealTargets.forEach(target => observer.observe(target))
 
     return () => {
-      sections.forEach(section => observer.unobserve(section))
+      revealTargets.forEach(target => observer.unobserve(target))
     }
   }, [])
 
@@ -61,8 +61,13 @@ function HomePage({
             className="system-label"
             style={{ textDecoration: 'none', color: 'inherit' }}
           >
-            AR.init()
+            Signal & Noise
           </Link>
+          <nav className="header-nav">
+            <Link to="/coursework" className="header-link">
+              Coursework
+            </Link>
+          </nav>
           <button 
             className="theme-toggle"
             onClick={toggleTheme}
@@ -91,7 +96,7 @@ function HomePage({
 
       <main>
         {/* Hero Section */}
-        <section className="hero">
+        <section className="hero reveal">
           <div className="container">
             <h1 className="hero-title">
               Abhinav Raj
@@ -108,7 +113,7 @@ function HomePage({
         </section>
 
         {/* About */}
-        <section className="background" id="about">
+        <section className="background reveal" id="about">
           <div className="container">
             <h2>About</h2>
             <p>
@@ -126,44 +131,56 @@ function HomePage({
         </section>
 
         {/* Highlights / Experience */}
-        <section className="interests" id="highlights">
+        <section className="interests reveal" id="highlights">
           <div className="container">
-            <h2>Highlights</h2>
+            <h2>Projects</h2>
             <p className="section-subtitle">
-              Selected work across leadership, product, and applied ML.
+              A few highlights across product, research, and applied ML.
             </p>
-            <div className="interests-grid">
-              <div className="interest-card">
-                <h3>SilentSync - Founder</h3>
-                <p>
-                  Launched an accessibility app empowering deaf employees; 100+ user interviews, 50+ deaf users onboarded, 10+ retail partners, and 40% engagement uplift.
-                </p>
-              </div>
-              <div className="interest-card">
-                <h3>Veritas AI - Traffic Mobility</h3>
-                <p>
-                  Built a NYC traffic risk model (74k+ records) for a mobility startup; 99.8% fatality prediction accuracy using one-hot encoding + SMOTE.
-                </p>
-              </div>
-              <div className="interest-card">
-                <h3>Veritas AI - Breast Cancer</h3>
-                <p>
-                  Developed a healthcare ML pipeline for breast cancer prediction; focused on data balance, feature selection, and high-sensitivity classification.
-                </p>
-              </div>
-              <div className="interest-card">
-                <h3>Supporting Janseva - Lead (placeholder)</h3>
-                <p>
-                  Community initiative supporting blue-collar workers with essential supplies during extreme weather. (Details updating soon.)
-                </p>
-              </div>
+            <div className="timeline">
+              <article className="timeline-item reveal" style={{ '--reveal-delay': '0ms' }}>
+                <div className="timeline-dot" />
+                <div className="timeline-content">
+                  <h3>Project - SilentSync (Founder)</h3>
+                  <p>
+                    Accessibility app for deaf employees; 100+ interviews, 50+ users onboarded, 10+ retail partners, and 40% engagement uplift.
+                  </p>
+                </div>
+              </article>
+              <article className="timeline-item reveal" style={{ '--reveal-delay': '120ms' }}>
+                <div className="timeline-dot" />
+                <div className="timeline-content">
+                  <h3>Project - Traffic Mobility Risk Model</h3>
+                  <p>
+                    Built a NYC traffic risk model (74k+ records); 99.8% fatality prediction accuracy using one-hot encoding + SMOTE.
+                  </p>
+                </div>
+              </article>
+              <article className="timeline-item reveal" style={{ '--reveal-delay': '240ms' }}>
+                <div className="timeline-dot" />
+                <div className="timeline-content">
+                  <h3>Internship - Healthcare ML (Breast Cancer)</h3>
+                  <p>
+                    Developed a breast cancer prediction pipeline focused on data balance, feature selection, and high-sensitivity classification.
+                  </p>
+                </div>
+              </article>
+              <article className="timeline-item reveal" style={{ '--reveal-delay': '360ms' }}>
+                <div className="timeline-dot" />
+                <div className="timeline-content">
+                  <h3>Project - Supporting Janseva (Lead)</h3>
+                  <p>
+                    Community initiative supporting blue-collar workers with essential supplies during extreme weather. (Details updating soon.)
+                  </p>
+                </div>
+              </article>
             </div>
           </div>
         </section>
 
 
         {/* Contact Section */}
-        <section id="contact" className="contact">
+        <section id="contact" className="contact reveal">
           <div className="container">
             <h2>Let's Connect</h2>
             <p className="section-subtitle">

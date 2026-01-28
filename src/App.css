@@ -38,6 +38,10 @@
   overflow-x: hidden;
 }
 
+#root {
+  min-height: 100%;
+}
+
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -59,6 +63,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 1.5rem;
 }
 
 .system-label {
@@ -68,6 +73,30 @@
   letter-spacing: 0.05em;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   transition: color 0.2s ease;
+}
+
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-left: auto;
+}
+
+.header-link {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.9rem;
+  letter-spacing: 0.02em;
+  transition: color 0.2s ease;
+}
+
+.header-link:hover {
+  color: var(--text-primary);
+}
+
+.header-link-active {
+  color: var(--text-muted);
+  cursor: default;
 }
 
 
@@ -225,39 +254,57 @@ section h2 {
   object-fit: cover;
 }
 
-/* Interests Section */
-.interests-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
+/* Projects Timeline */
+.timeline {
   margin-top: 2rem;
+  padding-left: 1.5rem;
+  border-left: 1px solid var(--border-secondary);
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
 }
 
-.interest-card {
+.timeline-item {
+  position: relative;
+  padding-left: 1rem;
+}
+
+.timeline-dot {
+  position: absolute;
+  left: -1.1rem;
+  top: 0.45rem;
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 6px rgba(37, 99, 235, 0.12);
+}
+
+.timeline-content {
   background: var(--bg-tertiary);
-  padding: 2rem;
-  border-radius: 8px;
   border: 1px solid var(--border-secondary);
-  transition: all 0.2s ease;
+  border-radius: 10px;
+  padding: 1.5rem;
+  transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
 }
 
-.interest-card:hover {
+.timeline-content:hover {
   border-color: var(--border-hover);
   background: var(--bg-secondary);
+  transform: translateY(-2px);
 }
 
-.interest-card h3 {
-  font-size: 1.25rem;
+.timeline-content h3 {
+  font-size: 1.125rem;
   font-weight: 600;
-  margin-bottom: 0.75rem;
   color: var(--text-primary);
-  letter-spacing: -0.01em;
+  margin-bottom: 0.5rem;
 }
 
-.interest-card p {
+.timeline-content p {
   color: var(--text-tertiary);
   line-height: 1.6;
-  font-size: 0.9375rem;
+  font-size: 0.95rem;
 }
 
 /* Coursework Section */
@@ -387,15 +434,17 @@ section h2 {
 }
 
 
-/* Smooth scroll reveal */
+/* Scroll reveal */
 @media (prefers-reduced-motion: no-preference) {
-  section {
+  .reveal {
     opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+    transition-delay: var(--reveal-delay, 0ms);
+    will-change: opacity, transform;
   }
-  
-  section.visible {
+
+  .reveal.visible {
     opacity: 1;
     transform: translateY(0);
   }
@@ -425,11 +474,6 @@ section h2 {
     font-size: 2rem;
   }
 
-  .interests-grid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-
   .container {
     padding: 0 1.5rem;
   }
@@ -439,8 +483,16 @@ section h2 {
     font-size: 0.95rem;
   }
 
-  .interest-card {
-    padding: 2rem;
+  .timeline {
+    padding-left: 1rem;
+  }
+
+  .timeline-dot {
+    left: -0.95rem;
+  }
+
+  .timeline-content {
+    padding: 1.25rem;
   }
 
   .course-item {
