@@ -1,205 +1,128 @@
-import React, { useState, useEffect } from 'react'
-import { Routes, Route, Link } from 'react-router-dom'
-import './App.css'
-import Coursework from './pages/Coursework'
+import { motion } from 'framer-motion'
 
-function App() {
-  const [theme, setTheme] = useState('dark')
-
-  useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme)
-  }, [theme])
-
-  // Scroll reveal animation
-  useEffect(() => {
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    }
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible')
-        }
-      })
-    }, observerOptions)
-
-    const revealTargets = document.querySelectorAll('.reveal')
-    revealTargets.forEach(target => observer.observe(target))
-
-    return () => {
-      revealTargets.forEach(target => observer.unobserve(target))
-    }
-  }, [])
-
-  const toggleTheme = () => {
-    setTheme(prevTheme => prevTheme === 'dark' ? 'light' : 'dark')
-  }
-
-  return (
-    <Routes>
-      <Route path="/coursework" element={<Coursework />} />
-      <Route path="/" element={<HomePage 
-        theme={theme}
-        toggleTheme={toggleTheme}
-      />} />
-    </Routes>
-  )
+const fadeUp = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0 }
 }
 
-function HomePage({
-  theme,
-  toggleTheme
-}) {
+const stagger = {
+  visible: {
+    transition: {
+      staggerChildren: 0.12
+    }
+  }
+}
+
+function App() {
   return (
-    <div className="app">
-      <header className="header">
-        <div className="container header-container">
-          <Link
-            to="/"
-            className="system-label"
-            style={{ textDecoration: 'none', color: 'inherit' }}
-          >
-            Signal & Noise
-          </Link>
-          <nav className="header-nav">
-            <Link to="/coursework" className="header-link">
-              Coursework
-            </Link>
-          </nav>
-          <button 
-            className="theme-toggle"
-            onClick={toggleTheme}
-            aria-label="Toggle theme"
-          >
-            {theme === 'dark' ? (
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <circle cx="12" cy="12" r="5"/>
-                <line x1="12" y1="1" x2="12" y2="3"/>
-                <line x1="12" y1="21" x2="12" y2="23"/>
-                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
-                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-                <line x1="1" y1="12" x2="3" y2="12"/>
-                <line x1="21" y1="12" x2="23" y2="12"/>
-                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
-                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
-              </svg>
-            ) : (
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-              </svg>
-            )}
-          </button>
+    <div className="min-h-screen bg-slate-950 text-slate-100">
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top,_rgba(59,130,246,0.18),_transparent_55%)]" />
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_20%_80%,_rgba(14,116,144,0.16),_transparent_50%)]" />
+
+      <header className="sticky top-0 z-20 border-b border-white/10 bg-slate-950/80 backdrop-blur">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
+          <div className="text-xs uppercase tracking-[0.3em] text-slate-400">Signal and Noise</div>
+          <div className="rounded-full border border-amber-400/40 bg-amber-400/10 px-4 py-2 text-xs font-semibold uppercase tracking-widest text-amber-200">
+            Work in Progress
+          </div>
         </div>
       </header>
 
-      <main>
-        {/* Hero Section */}
-        <section className="hero reveal">
-          <div className="container">
-            <h1 className="hero-title">
-              Abhinav Raj
+      <main className="mx-auto flex max-w-6xl flex-col gap-24 px-6 pb-24 pt-16">
+        <motion.section
+          className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr]"
+          initial="hidden"
+          animate="visible"
+          variants={stagger}
+        >
+          <motion.div variants={fadeUp} className="flex flex-col gap-6">
+            <p className="text-sm uppercase tracking-[0.4em] text-slate-400">New build</p>
+            <h1 className="text-4xl font-semibold leading-tight text-white sm:text-5xl">
+              A clean slate for the next version of my portfolio.
             </h1>
-            <p className="hero-subtitle">Computer Science & Statistics</p>
-            <p className="hero-description">
-              CS & Linguistics student at University of Illinois at Urbana-Champaign transitioning to Statistics + CS. 
-              Focused on NLP, low-latency systems, and quantitative strategies.
+            <p className="text-lg text-slate-300">
+              Built with React, Tailwind CSS, and Framer Motion. This is the early foundation for a
+              faster, more intentional experience.
             </p>
-            <div className="hero-buttons">
-              <Link to="/coursework" className="btn btn-primary">View Coursework</Link>
+            <div className="flex flex-wrap gap-3">
+              <span className="rounded-full border border-white/10 px-4 py-2 text-xs uppercase tracking-widest text-slate-300">
+                Design in progress
+              </span>
+              <span className="rounded-full border border-white/10 px-4 py-2 text-xs uppercase tracking-widest text-slate-300">
+                Content in progress
+              </span>
+              <span className="rounded-full border border-white/10 px-4 py-2 text-xs uppercase tracking-widest text-slate-300">
+                Launching soon
+              </span>
             </div>
-          </div>
-        </section>
-
-        {/* About */}
-        <section className="background reveal" id="about">
-          <div className="container">
-            <h2>About</h2>
-            <p>
-              Computer Science & Linguistics student at the University of Illinois at Urbana-Champaign ('29), pursuing Statistics + CS. 
-              Building end-to-end products across NLP, low-latency systems, and quantitative strategies.
-            </p>
-            <p>
-              Recent highlights: Harvard CS50 Web, Veritas AI (traffic safety & healthcare ML), and hands-on leadership roles launching
-              accessibility-focused products.
-            </p>
-            <p>
-              Interested in internships across quantitative research/engineering, ML systems, and product-minded engineering roles.
-            </p>
-          </div>
-        </section>
-
-        {/* Highlights / Experience */}
-        <section className="interests reveal" id="highlights">
-          <div className="container">
-            <h2>Projects</h2>
-            <p className="section-subtitle">
-              A few highlights across product, research, and applied ML.
-            </p>
-            <div className="timeline">
-              <article className="timeline-item reveal" style={{ '--reveal-delay': '0ms' }}>
-                <div className="timeline-dot" />
-                <div className="timeline-content">
-                  <h3>Project - SilentSync (Founder)</h3>
-                  <p>
-                    Accessibility app for deaf employees; 100+ interviews, 50+ users onboarded, 10+ retail partners, and 40% engagement uplift.
-                  </p>
-                </div>
-              </article>
-              <article className="timeline-item reveal" style={{ '--reveal-delay': '120ms' }}>
-                <div className="timeline-dot" />
-                <div className="timeline-content">
-                  <h3>Project - Traffic Mobility Risk Model</h3>
-                  <p>
-                    Built a NYC traffic risk model (74k+ records); 99.8% fatality prediction accuracy using one-hot encoding + SMOTE.
-                  </p>
-                </div>
-              </article>
-              <article className="timeline-item reveal" style={{ '--reveal-delay': '240ms' }}>
-                <div className="timeline-dot" />
-                <div className="timeline-content">
-                  <h3>Internship - Healthcare ML (Breast Cancer)</h3>
-                  <p>
-                    Developed a breast cancer prediction pipeline focused on data balance, feature selection, and high-sensitivity classification.
-                  </p>
-                </div>
-              </article>
-              <article className="timeline-item reveal" style={{ '--reveal-delay': '360ms' }}>
-                <div className="timeline-dot" />
-                <div className="timeline-content">
-                  <h3>Project - Supporting Janseva (Lead)</h3>
-                  <p>
-                    Community initiative supporting blue-collar workers with essential supplies during extreme weather. (Details updating soon.)
-                  </p>
-                </div>
-              </article>
+          </motion.div>
+          <motion.div
+            variants={fadeUp}
+            className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-8"
+          >
+            <div className="absolute -right-10 top-10 h-40 w-40 rounded-full bg-blue-500/20 blur-3xl" />
+            <div className="absolute -bottom-12 left-8 h-40 w-40 rounded-full bg-cyan-400/20 blur-3xl" />
+            <div className="flex h-full flex-col gap-8">
+              <div className="text-sm uppercase tracking-[0.3em] text-slate-400">Focus</div>
+              <div className="space-y-4 text-slate-200">
+                <p>Quant systems, applied ML, and low-latency engineering.</p>
+                <p>Exploring the intersection of statistics, linguistics, and product.</p>
+                <p>Shipping faster, cleaner, and more useful work.</p>
+              </div>
             </div>
-          </div>
-        </section>
+          </motion.div>
+        </motion.section>
 
-
-        {/* Contact Section */}
-        <section id="contact" className="contact reveal">
-          <div className="container">
-            <h2>Let's Connect</h2>
-            <p className="section-subtitle">
-              I'm always interested in discussing new opportunities in quantitative finance, 
-              NLP research, or hardware engineering.
-            </p>
-            <div className="contact-info">
-              <p className="contact-address">1012 W Illinois St, Urbana</p>
-              <a 
-                href="https://github.com/abhinav10raj" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="contact-link"
-              >
-                Follow on GitHub
-              </a>
+        <motion.section
+          className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr]"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={stagger}
+        >
+          <motion.div variants={fadeUp} className="rounded-3xl border border-white/10 bg-white/5 p-8">
+            <p className="text-xs uppercase tracking-[0.35em] text-slate-400">Now building</p>
+            <h2 className="mt-4 text-2xl font-semibold">What is changing</h2>
+            <ul className="mt-6 space-y-3 text-slate-300">
+              <li>New structure for projects and research.</li>
+              <li>Story-driven timelines with measurable impact.</li>
+              <li>Sharper visuals and smoother motion.</li>
+              <li>Better way to share coursework and updates.</li>
+            </ul>
+          </motion.div>
+          <motion.div variants={fadeUp} className="rounded-3xl border border-white/10 bg-white/5 p-8">
+            <p className="text-xs uppercase tracking-[0.35em] text-slate-400">Next milestones</p>
+            <div className="mt-6 grid gap-6">
+              {[
+                { title: 'Rewrite project stories', note: 'Add clear outcomes and visual demos.' },
+                { title: 'Coursework overhaul', note: 'Pull from updated transcript layout.' },
+                { title: 'Public launch', note: 'Finalize content and ship when ready.' }
+              ].map((item) => (
+                <div key={item.title} className="rounded-2xl border border-white/10 bg-slate-900/60 p-5">
+                  <h3 className="text-lg font-semibold text-white">{item.title}</h3>
+                  <p className="mt-2 text-sm text-slate-300">{item.note}</p>
+                </div>
+              ))}
             </div>
-          </div>
-        </section>
+          </motion.div>
+        </motion.section>
+
+        <motion.section
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          variants={stagger}
+          className="rounded-3xl border border-white/10 bg-gradient-to-r from-slate-900/80 via-slate-900/60 to-slate-900/80 p-10"
+        >
+          <motion.div variants={fadeUp} className="flex flex-col gap-4">
+            <p className="text-xs uppercase tracking-[0.35em] text-slate-400">Status</p>
+            <h2 className="text-2xl font-semibold">This site is being rebuilt.</h2>
+            <p className="text-slate-300">
+              For now, this page is a placeholder to signal progress. The full portfolio will be
+              released after the content refresh.
+            </p>
+          </motion.div>
+        </motion.section>
       </main>
     </div>
   )
