@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { Routes, Route, Link } from 'react-router-dom'
+import { Analytics } from '@vercel/analytics/react'
 import Coursework from './pages/Coursework'
 
 const fadeUp = {
@@ -293,6 +294,7 @@ function App() {
         <Route path="/coursework" element={<Coursework />} />
       </Routes>
       <Footer />
+      <Analytics />
     </div>
   )
 }
