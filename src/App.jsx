@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { Routes, Route, Link } from 'react-router-dom'
 import { Analytics } from '@vercel/analytics/react'
+import { SpeedInsights } from '@vercel/speed-insights/react'
 import Coursework from './pages/Coursework'
 
 const fadeUp = {
@@ -295,6 +296,7 @@ function App() {
       </Routes>
       <Footer />
       <Analytics />
+      <SpeedInsights />
     </div>
   )
 }
