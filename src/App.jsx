@@ -36,10 +36,9 @@ const experiences = [
     location: 'UIUC, Champaign, Illinois',
     period: 'Feb 2026 - Present',
     highlights: [
-      'Implemented signals, backtests, and evaluation for an algorithmic trading replication project.',
-      'Added execution and risk realism checks, including transaction costs, in-sample and out-of-sample splits, and parameter sweeps.',
-      'Built reproducible reporting with side-by-side replication results and a motivated extension.',
-      'Expanded performance reporting with Sharpe, drawdown, turnover, and regime-based stress tests.'
+      'Built a Python research pipeline comparing Buy & Hold, 252-day Time-Series Momentum, Directional Change, and Multi-Threshold DC on SPY/QQQ/TLT/GLD daily ETF data from 2010-2026.',
+      'Implemented one-day-lagged backtests with normalized exposures, turnover-based transaction costs, and 0/5/10 bps robustness checks; tracked return, Sharpe, volatility, max drawdown, turnover, and trades.',
+      'Showed Time-Series Momentum was the strongest active strategy, earning 76.62% total return with 0.41 Sharpe and 3.73% turnover, while higher-turnover DC variants underperformed after costs.'
     ]
   },
   {
@@ -70,20 +69,21 @@ const projects = [
   {
     title: 'SilentSync',
     period: '2023 - 2025',
-    description: 'Built an app to support deaf employees and improve workplace communication.',
+    description: 'Launched an app to support deaf employees and improve workplace communication.',
     highlights: [
-      'Conducted 100+ user interviews and iterated the product based on feedback from deaf users and retail partners.',
-      'Secured local business partnerships, increasing usage by 40% and reaching 150+ downloads in the first month.'
+      'Conducted 100+ user interviews; iterated on product based on feedback from deaf users and retail partners.',
+      'Secured partnerships with local businesses, increasing usage by 40% and reaching 150+ downloads in the first month.'
     ],
     technologies: ['Accessibility', 'User Research', 'Product Iteration']
   },
   {
     title: 'NYC Traffic Fatality Prediction',
     period: 'June 2024',
-    description: 'Developed machine learning models on 74,881 NYC traffic accident records.',
+    description: 'Built ML models on 74,881 NYC traffic accident records.',
     highlights: [
       'Achieved 99.82% predictive accuracy for fatality outcomes.',
-      'Applied one-hot encoding, SMOTE-based imbalance handling, and documented error analysis.'
+      'Applied feature engineering and imbalance handling (one-hot encoding, SMOTE) and documented error analysis.',
+      'Evaluated classification quality with precision/recall/F1 and a confusion matrix; reviewed error slices by borough, time-of-day, and weather conditions.'
     ],
     technologies: ['Python', 'Machine Learning', 'SMOTE']
   }
