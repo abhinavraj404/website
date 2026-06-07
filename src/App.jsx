@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Routes, Route, Link } from 'react-router-dom'
 import { Analytics } from '@vercel/analytics/react'
@@ -74,7 +75,9 @@ const projects = [
       'Conducted 100+ user interviews; iterated on product based on feedback from deaf users and retail partners.',
       'Secured partnerships with local businesses, increasing usage by 40% and reaching 150+ downloads in the first month.'
     ],
-    technologies: ['Accessibility', 'User Research', 'Product Iteration']
+    technologies: ['Accessibility', 'User Research', 'Product Iteration'],
+    // Add { label: 'GitHub', href: '...' } and/or { label: 'Live', href: '...' } here
+    links: []
   },
   {
     title: 'NYC Traffic Fatality Prediction',
@@ -85,7 +88,9 @@ const projects = [
       'Applied feature engineering and imbalance handling (one-hot encoding, SMOTE) and documented error analysis.',
       'Evaluated classification quality with precision/recall/F1 and a confusion matrix; reviewed error slices by borough, time-of-day, and weather conditions.'
     ],
-    technologies: ['Python', 'Machine Learning', 'SMOTE']
+    technologies: ['Python', 'Machine Learning', 'SMOTE'],
+    // Add { label: 'GitHub', href: '...' } and/or { label: 'Live', href: '...' } here
+    links: []
   }
 ]
 
@@ -157,10 +162,10 @@ function Home() {
               Abhinav Raj
             </h1>
             <p className="text-lg text-slate-300">
-              Freshman at University of Illinois at Urbana Champaign
+              Sophomore at University of Illinois at Urbana Champaign
             </p>
             <p className="text-lg text-slate-300">
-              Computer Science and Linguistics
+              Statistics &amp; Computer Science, Minor in Mathematics
             </p>
             <div className="flex flex-wrap gap-3 pt-2">
               {heroLinks.map((link) => (
@@ -191,7 +196,7 @@ function Home() {
             <motion.div variants={fadeUp} className="flex flex-col gap-4">
                 <h2 className="text-2xl font-semibold">About Me</h2>
                 <p className="text-slate-300">
-                    I am a passionate and driven Computer Science and Linguistics student at the University of Illinois at Urbana Champaign. My interests lie at the intersection of technology, language, and human-computer interaction. I am always eager to learn new things and apply my knowledge to solve real-world problems. I am also building practical products, validating ideas quickly with users, and turning early prototypes into tools people actually use.
+                    I am a passionate and driven Statistics &amp; Computer Science student, minoring in Mathematics, at the University of Illinois at Urbana Champaign. My interests lie at the intersection of data, software, and quantitative problem-solving. I am always eager to learn new things and apply my knowledge to solve real-world problems. I am also building practical products, validating ideas quickly with users, and turning early prototypes into tools people actually use.
                 </p>
             </motion.div>
         </motion.section>
@@ -273,6 +278,21 @@ function Home() {
                                     </span>
                                 ))}
                             </div>
+                            {project.links?.length > 0 && (
+                                <div className="mt-4 flex flex-wrap gap-3">
+                                    {project.links.map(link => (
+                                        <a
+                                            key={link.label}
+                                            href={link.href}
+                                            target="_blank"
+                                            rel="noreferrer"
+                                            className="rounded-full border border-cyan-400/40 bg-cyan-400/10 px-4 py-2 text-xs font-semibold uppercase tracking-widest text-cyan-200 transition hover:border-cyan-300/60 hover:bg-cyan-300/15"
+                                        >
+                                            {link.label}
+                                        </a>
+                                    ))}
+                                </div>
+                            )}
                         </div>
                     ))}
                 </div>
@@ -284,6 +304,19 @@ function Home() {
 }
 
 function App() {
+  useEffect(() => {
+    // Fire-and-forget visit ping; failures must never affect the page.
+    fetch('/api/track', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        path: window.location.pathname,
+        referrer: document.referrer
+      }),
+      keepalive: true
+    }).catch(() => {})
+  }, [])
+
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100">
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top,_rgba(59,130,246,0.18),_transparent_55%)]" />
