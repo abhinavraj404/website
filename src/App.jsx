@@ -68,6 +68,17 @@ const experiences = [
 
 const projects = [
   {
+    title: 'SLM vs LLM Benchmark (SIGNLL)',
+    period: '2025 - Present',
+    description: 'Benchmarked small language models against large language models for specialized tasks across quality, latency, and cost.',
+    highlights: [
+      'Designed domain-focused evaluation prompts and test cases, tracking task-level metrics with error analysis.',
+      'Ran experiments across model variants and inference settings, summarizing findings for downstream use.'
+    ],
+    technologies: ['Python', 'LLMs', 'Evaluation', 'NLP'],
+    links: [{ label: 'GitHub', href: 'https://github.com/abhinav10raj/slm-vs-llm-benchmark' }]
+  },
+  {
     title: 'SilentSync',
     period: '2023 - 2025',
     description: 'Launched an app to support deaf employees and improve workplace communication.',
