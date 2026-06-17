@@ -4,6 +4,8 @@ import { Routes, Route, Link } from 'react-router-dom'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/react'
 import Coursework from './pages/Coursework'
+import ProjectDetail from './pages/ProjectDetail'
+import { projects } from './data/projects'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
@@ -63,45 +65,6 @@ const experiences = [
       'Used Python and SQL to analyze more than 240,000 lines of telemetry on battery voltage, power, and current.',
       'Parsed JSON logs and visualized trends with Pandas, Polars, NumPy, and Matplotlib to support data-quality improvements.'
     ]
-  }
-]
-
-const projects = [
-  {
-    title: 'SLM vs LLM Benchmark (SIGNLL)',
-    period: '2025 - Present',
-    description: 'Benchmarked small language models against large language models for specialized tasks across quality, latency, and cost.',
-    highlights: [
-      'Designed domain-focused evaluation prompts and test cases, tracking task-level metrics with error analysis.',
-      'Ran experiments across model variants and inference settings, summarizing findings for downstream use.'
-    ],
-    technologies: ['Python', 'LLMs', 'Evaluation', 'NLP'],
-    links: [{ label: 'GitHub', href: 'https://github.com/abhinav10raj/slm-vs-llm-benchmark' }]
-  },
-  {
-    title: 'SilentSync',
-    period: '2023 - 2025',
-    description: 'Launched an app to support deaf employees and improve workplace communication.',
-    highlights: [
-      'Conducted 100+ user interviews; iterated on product based on feedback from deaf users and retail partners.',
-      'Secured partnerships with local businesses, increasing usage by 40% and reaching 150+ downloads in the first month.'
-    ],
-    technologies: ['Accessibility', 'User Research', 'Product Iteration'],
-    // Add { label: 'GitHub', href: '...' } and/or { label: 'Live', href: '...' } here
-    links: []
-  },
-  {
-    title: 'NYC Traffic Fatality Prediction',
-    period: 'June 2024',
-    description: 'Built ML models on 74,881 NYC traffic accident records.',
-    highlights: [
-      'Achieved 99.82% predictive accuracy for fatality outcomes.',
-      'Applied feature engineering and imbalance handling (one-hot encoding, SMOTE) and documented error analysis.',
-      'Evaluated classification quality with precision/recall/F1 and a confusion matrix; reviewed error slices by borough, time-of-day, and weather conditions.'
-    ],
-    technologies: ['Python', 'Machine Learning', 'SMOTE'],
-    // Add { label: 'GitHub', href: '...' } and/or { label: 'Live', href: '...' } here
-    links: []
   }
 ]
 
@@ -289,15 +252,23 @@ function Home() {
                                     </span>
                                 ))}
                             </div>
-                            {project.links?.length > 0 && (
+                            {(project.detail || project.links?.length > 0) && (
                                 <div className="mt-4 flex flex-wrap gap-3">
-                                    {project.links.map(link => (
+                                    {project.detail && (
+                                        <Link
+                                            to={`/projects/${project.slug}`}
+                                            className="rounded-full border border-cyan-400/40 bg-cyan-400/10 px-4 py-2 text-xs font-semibold uppercase tracking-widest text-cyan-200 transition hover:border-cyan-300/60 hover:bg-cyan-300/15"
+                                        >
+                                            Read more
+                                        </Link>
+                                    )}
+                                    {project.links?.map(link => (
                                         <a
                                             key={link.label}
                                             href={link.href}
                                             target="_blank"
                                             rel="noreferrer"
-                                            className="rounded-full border border-cyan-400/40 bg-cyan-400/10 px-4 py-2 text-xs font-semibold uppercase tracking-widest text-cyan-200 transition hover:border-cyan-300/60 hover:bg-cyan-300/15"
+                                            className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-widest text-slate-200 transition hover:border-cyan-300/60 hover:text-cyan-200"
                                         >
                                             {link.label}
                                         </a>
@@ -337,6 +308,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/coursework" element={<Coursework />} />
+        <Route path="/projects/:slug" element={<ProjectDetail />} />
       </Routes>
       <Footer />
       <Analytics />
