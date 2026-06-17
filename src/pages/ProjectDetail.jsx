@@ -50,7 +50,7 @@ function ProjectDetail() {
         </motion.div>
         <motion.div variants={fadeUp} className="flex flex-wrap items-end justify-between gap-3">
           <h1 className="text-3xl font-semibold text-white sm:text-4xl">{project.title}</h1>
-          <p className="text-sm font-medium text-cyan-300">{project.period}</p>
+          <p className="text-sm font-medium text-amber-300">{project.period}</p>
         </motion.div>
         {detail.tagline && (
           <motion.p variants={fadeUp} className="text-lg text-slate-300">

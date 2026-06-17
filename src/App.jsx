@@ -85,7 +85,12 @@ function Header() {
           <span className="font-semibold">Abhinav</span>{' '}
           <span className="font-light text-slate-400">Raj</span>
         </Link>
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-6">
+          <nav className="hidden items-center gap-6 text-sm text-slate-300 sm:flex">
+            <a href="/#about" className="transition hover:text-cyan-200">About</a>
+            <a href="/#experience" className="transition hover:text-cyan-200">Experience</a>
+            <a href="/#projects" className="transition hover:text-cyan-200">Projects</a>
+          </nav>
           <a
             href="/resume.pdf"
             target="_blank"
@@ -135,12 +140,12 @@ function Home() {
     <>
       <main className="mx-auto flex max-w-6xl flex-col gap-24 px-6 pb-24 pt-16">
         <motion.section
-          className="flex items-center justify-center gap-12"
+          className="flex flex-col items-center gap-10 text-center md:flex-row md:justify-center md:gap-12 md:text-left"
           initial="hidden"
           animate="visible"
           variants={stagger}
         >
-          <motion.div variants={fadeUp} className="flex flex-col gap-6">
+          <motion.div variants={fadeUp} className="flex flex-col items-center gap-6 md:items-start">
             <h1 className="text-4xl font-semibold leading-tight text-white sm:text-5xl">
               Abhinav Raj
             </h1>
@@ -150,7 +155,7 @@ function Home() {
             <p className="text-lg text-slate-300">
               Statistics &amp; Computer Science, Minor in Mathematics
             </p>
-            <div className="flex flex-wrap gap-3 pt-2">
+            <div className="flex flex-wrap justify-center gap-3 pt-2 md:justify-start">
               {heroLinks.map((link) => (
                 <a
                   key={link.label}
@@ -165,7 +170,7 @@ function Home() {
             </div>
           </motion.div>
           <motion.div variants={fadeUp}>
-            <img src="/profile.jpg" alt="Abhinav Raj" className="h-96 w-96 rounded-full object-cover object-[50%_28%] shadow-lg shadow-white/10" />
+            <img src="/profile.jpg" alt="Abhinav Raj" className="h-60 w-60 shrink-0 rounded-full object-cover object-[50%_28%] shadow-lg shadow-white/10 sm:h-72 sm:w-72 md:h-96 md:w-96" />
           </motion.div>
         </motion.section>
 
@@ -174,7 +179,8 @@ function Home() {
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
           variants={stagger}
-          className="rounded-3xl border border-white/10 bg-white/5 p-8"
+          id="about"
+          className="scroll-mt-24"
         >
             <motion.div variants={fadeUp} className="flex flex-col gap-4">
                 <h2 className="text-2xl font-semibold">About Me</h2>
@@ -189,7 +195,7 @@ function Home() {
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
             variants={stagger}
-            className="rounded-3xl border border-white/10 bg-white/5 p-8"
+            className="scroll-mt-24"
         >
             <motion.div variants={fadeUp} className="flex flex-col gap-4">
                 <h2 className="text-2xl font-semibold">Skills</h2>
@@ -208,6 +214,8 @@ function Home() {
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
             variants={stagger}
+            id="experience"
+            className="scroll-mt-24"
         >
             <motion.div variants={fadeUp} className="flex flex-col gap-4">
                 <h2 className="text-2xl font-semibold">Experience</h2>
@@ -220,7 +228,7 @@ function Home() {
                                     <p className="text-sm text-slate-300">{experience.role}</p>
                                     <p className="text-xs uppercase tracking-wider text-slate-400">{experience.location}</p>
                                 </div>
-                                <p className="text-sm font-medium text-cyan-300">{experience.period}</p>
+                                <p className="text-sm font-medium text-amber-300">{experience.period}</p>
                             </div>
                             <ul className="mt-4 space-y-2 text-sm text-slate-300">
                                 {experience.highlights.map((item) => (
@@ -263,6 +271,8 @@ function Home() {
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
             variants={stagger}
+            id="projects"
+            className="scroll-mt-24"
         >
             <motion.div variants={fadeUp} className="flex flex-col gap-4">
                 <h2 className="text-2xl font-semibold">Featured Projects</h2>
@@ -271,7 +281,7 @@ function Home() {
                         <div key={project.title} className="rounded-2xl border border-white/10 bg-slate-900/60 p-5">
                             <div className="flex items-start justify-between gap-4">
                                 <h3 className="text-lg font-semibold text-white">{project.title}</h3>
-                                <p className="text-sm font-medium text-cyan-300">{project.period}</p>
+                                <p className="text-sm font-medium text-amber-300">{project.period}</p>
                             </div>
                             <p className="mt-2 text-sm text-slate-300">{project.description}</p>
                             <ul className="mt-4 space-y-2 text-sm text-slate-300">
