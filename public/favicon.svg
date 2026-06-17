@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0f172a"/>
+      <stop offset="1" stop-color="#020617"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="url(#bg)"/>
+  <rect x="1.5" y="1.5" width="61" height="61" rx="12.5" fill="none" stroke="#22d3ee" stroke-opacity="0.35" stroke-width="1.5"/>
+  <text x="32" y="33" text-anchor="middle" dominant-baseline="central"
+        font-family="'Segoe UI', Helvetica, Arial, sans-serif" font-size="30" font-weight="700"
+        fill="#67e8f9" letter-spacing="-1">AR</text>
+</svg>
