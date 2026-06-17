@@ -42,6 +42,11 @@ const experiences = [
       'Built a Python research pipeline comparing Buy & Hold, 252-day Time-Series Momentum, Directional Change, and Multi-Threshold DC on SPY/QQQ/TLT/GLD daily ETF data from 2010-2026.',
       'Implemented one-day-lagged backtests with normalized exposures, turnover-based transaction costs, and 0/5/10 bps robustness checks; tracked return, Sharpe, volatility, max drawdown, turnover, and trades.',
       'Showed Time-Series Momentum was the strongest active strategy, earning 76.62% total return with 0.41 Sharpe and 3.73% turnover, while higher-turnover DC variants underperformed after costs.'
+    ],
+    links: [
+      { label: 'Project rundown', to: '/projects/etf-trading-strategy-backtest' },
+      { label: 'GitHub', href: 'https://github.com/filehunts/FEC_algo-trading-3' },
+      { label: 'Writeup (PDF)', href: '/fec-writeup.pdf' }
     ]
   },
   {

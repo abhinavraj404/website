@@ -89,6 +89,35 @@ function ProjectDetail() {
                 {paragraph}
               </p>
             ))}
+            {section.table && (
+              <div className="mt-4 overflow-x-auto rounded-2xl border border-white/10">
+                <table className="w-full border-collapse text-left text-sm">
+                  <thead>
+                    <tr className="border-b border-white/10 bg-white/5">
+                      {section.table.columns.map((column) => (
+                        <th key={column} className="px-4 py-3 font-semibold text-slate-200">
+                          {column}
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {section.table.rows.map((row) => (
+                      <tr key={row[0]} className="border-b border-white/5 last:border-0">
+                        {row.map((cell, cellIndex) => (
+                          <td
+                            key={cellIndex}
+                            className={cellIndex === 0 ? 'px-4 py-3 font-medium text-slate-100' : 'px-4 py-3 text-slate-300'}
+                          >
+                            {cell}
+                          </td>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
           </motion.article>
         ))}
       </motion.section>
