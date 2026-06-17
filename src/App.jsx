@@ -54,6 +54,10 @@ const experiences = [
       'Designed domain-focused evaluation prompts and test cases, then tracked task-level metrics with error analysis.',
       'Ran experiments across model variants and inference settings, and summarized findings for downstream use.',
       'Iterated on experiment design based on observed failure modes and team feedback.'
+    ],
+    links: [
+      { label: 'Project rundown', to: '/projects/slm-vs-llm-benchmark' },
+      { label: 'GitHub', href: 'https://github.com/abhinav10raj/slm-vs-llm-benchmark' }
     ]
   },
   {
@@ -218,6 +222,31 @@ function Home() {
                                     <li key={item} className="leading-relaxed">- {item}</li>
                                 ))}
                             </ul>
+                            {experience.links?.length > 0 && (
+                                <div className="mt-4 flex flex-wrap gap-3">
+                                    {experience.links.map((link) => (
+                                        link.to ? (
+                                            <Link
+                                                key={link.label}
+                                                to={link.to}
+                                                className="rounded-full border border-cyan-400/40 bg-cyan-400/10 px-4 py-2 text-xs font-semibold uppercase tracking-widest text-cyan-200 transition hover:border-cyan-300/60 hover:bg-cyan-300/15"
+                                            >
+                                                {link.label}
+                                            </Link>
+                                        ) : (
+                                            <a
+                                                key={link.label}
+                                                href={link.href}
+                                                target="_blank"
+                                                rel="noreferrer"
+                                                className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-widest text-slate-200 transition hover:border-cyan-300/60 hover:text-cyan-200"
+                                            >
+                                                {link.label}
+                                            </a>
+                                        )
+                                    ))}
+                                </div>
+                            )}
                         </article>
                     ))}
                 </div>
