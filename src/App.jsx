@@ -279,10 +279,7 @@ function Home() {
                 <div className="mt-6 grid gap-6 md:grid-cols-2">
                     {projects.map((project) => (
                         <div key={project.title} className="rounded-2xl border border-white/10 bg-slate-900/60 p-5">
-                            <div className="flex items-start justify-between gap-4">
-                                <h3 className="text-lg font-semibold text-white">{project.title}</h3>
-                                <p className="text-sm font-medium text-amber-300">{project.period}</p>
-                            </div>
+                            <h3 className="text-lg font-semibold text-white">{project.title}</h3>
                             <p className="mt-2 text-sm text-slate-300">{project.description}</p>
                             <ul className="mt-4 space-y-2 text-sm text-slate-300">
                                 {project.highlights.map((item) => (
