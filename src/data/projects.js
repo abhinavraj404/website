@@ -125,19 +125,6 @@ export const projects = [
     }
   },
   {
-    slug: 'nyc-traffic-fatality-prediction',
-    title: 'NYC Traffic Fatality Prediction',
-    period: 'June 2024',
-    description: 'Built ML models on 74,881 NYC traffic accident records.',
-    highlights: [
-      'Achieved 99.82% predictive accuracy for fatality outcomes.',
-      'Applied feature engineering and imbalance handling (one-hot encoding, SMOTE) and documented error analysis.',
-      'Evaluated classification quality with precision/recall/F1 and a confusion matrix; reviewed error slices by borough, time-of-day, and weather conditions.'
-    ],
-    technologies: ['Python', 'Machine Learning', 'SMOTE'],
-    links: []
-  },
-  {
     slug: 'silentsync',
     title: 'SilentSync',
     period: '2023 - 2025',
