@@ -119,8 +119,7 @@ export const projects = [
       ],
       stack: ['Python', 'pandas / NumPy', 'yfinance', 'Vectorized backtesting', 'Turnover-based cost modeling'],
       links: [
-        { label: 'View on GitHub', href: 'https://github.com/filehunts/FEC_algo-trading-3' },
-        { label: 'Read the full writeup (PDF)', href: '/fec-writeup.pdf' }
+        { label: 'View on GitHub', href: 'https://github.com/filehunts/FEC_algo-trading-3' }
       ]
     }
   },
