@@ -45,8 +45,7 @@ const experiences = [
     ],
     links: [
       { label: 'Project rundown', to: '/projects/etf-trading-strategy-backtest' },
-      { label: 'GitHub', href: 'https://github.com/filehunts/FEC_algo-trading-3' },
-      { label: 'Writeup (PDF)', href: '/fec-writeup.pdf' }
+      { label: 'GitHub', href: 'https://github.com/filehunts/FEC_algo-trading-3' }
     ]
   },
   {
