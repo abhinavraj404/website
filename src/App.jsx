@@ -34,30 +34,35 @@ const heroLinks = [
 
 const experiences = [
   {
-    organization: 'Financial Engineering Club',
-    role: 'Member',
+    organization: 'Disruption Lab — StratLab',
+    role: 'Strategy Analyst',
     location: 'UIUC, Champaign, Illinois',
-    period: 'Feb 2026 - Present',
+    period: 'Sep 2026 - Present',
     highlights: [
-      'Built a Python research pipeline comparing Buy & Hold, 252-day Time-Series Momentum, Directional Change, and Multi-Threshold DC on SPY/QQQ/TLT/GLD daily ETF data from 2010-2026.',
-      'Implemented one-day-lagged backtests with normalized exposures, turnover-based transaction costs, and 0/5/10 bps robustness checks; tracked return, Sharpe, volatility, max drawdown, turnover, and trades.',
-      'Showed Time-Series Momentum was the strongest active strategy, earning 76.62% total return with 0.41 Sharpe and 3.73% turnover, while higher-turnover DC variants underperformed after costs.'
-    ],
-    links: [
-      { label: 'Project rundown', to: '/projects/etf-trading-strategy-backtest' },
-      { label: 'GitHub', href: 'https://github.com/filehunts/FEC_algo-trading-3' }
+      'Evaluating the cost competitiveness of a DOE-backed direct lithium extraction technology that recovers battery-grade lithium from oilfield wastewater, benchmarked against hard-rock and brine mining.',
+      'Contributing to a commercialization roadmap for scaling the technology within the U.S. clean-energy supply chain.'
     ]
   },
   {
-    organization: 'SIGNLL (Speech and Interdisciplinary Group for Natural Language Learning)',
-    role: 'Research Member',
+    organization: 'Siebel School of Computing and Data Science — CS STARS',
+    role: 'Undergraduate Research Scholar',
+    location: 'UIUC, Champaign, Illinois',
+    period: 'Aug 2026 - Present',
+    highlights: [
+      'Selected for the department’s undergraduate research scholars program, engaging in undergraduate research and supporting student recruitment for the Siebel School.'
+    ]
+  },
+  {
+    organization: 'ACM@UIUC — SIGNLL',
+    role: 'Member',
     location: 'UIUC, Champaign, Illinois',
     period: 'Aug 2025 - Present',
     highlights: [
-      'Compared small language models (SLMs) and large language models (LLMs) for specialized tasks across quality, latency, and cost.',
-      'Designed domain-focused evaluation prompts and test cases, then tracked task-level metrics with error analysis.',
-      'Ran experiments across model variants and inference settings, and summarized findings for downstream use.',
-      'Iterated on experiment design based on observed failure modes and team feedback.'
+      'Measured a statistically robust 22.4-point accuracy gap between Claude Haiku 4.5 at 80.0% and the best local 3B model at 57.6% (95% CI [16.8, 28.0]) on FinQA financial numerical reasoning, with Sonnet 4.6 highest at 85.2%.',
+      'Benchmarked Llama 3.2, Qwen 2.5, and Phi 3.5 locally through Ollama at 8-bit quantization on a single consumer GPU, at zero marginal API cost.',
+      'Found the gap collapses on FOMC monetary-policy stance classification — a 17.7-point macro-F1 spread versus 3.5 on numerical reasoning — showing the deficit is specific to multi-step arithmetic reasoning rather than general financial language understanding.',
+      'Built a unit-aware answer-extraction and dual-gold scoring layer reaching 99.6% parse coverage, and audited scoring tolerance across 434 boundary cases to confirm small-model errors were reasoning failures rather than parsing artifacts.',
+      'Measured quality, latency, and cost using multi-tolerance accuracy, bootstrap confidence intervals, and paired-bootstrap significance tests; packaged the pipeline as a config-driven harness with persisted per-item outputs for reproducible re-scoring.'
     ],
     links: [
       { label: 'Project rundown', to: '/projects/slm-vs-llm-benchmark' },
@@ -65,13 +70,19 @@ const experiences = [
     ]
   },
   {
-    organization: 'Solar Car Team Illinois',
-    role: 'Strategy Team Member',
+    organization: 'Financial Engineering Club',
+    role: 'Member',
     location: 'UIUC, Champaign, Illinois',
-    period: 'Aug 2025 - Dec 2025',
+    period: 'Feb 2026 - Aug 2026',
     highlights: [
-      'Used Python and SQL to analyze more than 240,000 lines of telemetry on battery voltage, power, and current.',
-      'Parsed JSON logs and visualized trends with Pandas, Polars, NumPy, and Matplotlib to support data-quality improvements.'
+      'Built a Python research pipeline comparing Buy and Hold, 252-day Time-Series Momentum, Directional Change, and Multi-Threshold Directional Change strategies on SPY, QQQ, TLT, and GLD daily ETF data from 2010 to 2026; implemented one-day-lagged backtests with normalized exposures and 0, 5, and 10 bps transaction-cost checks.',
+      'Found no active rule beat passive exposure — Buy & Hold returned 649.70% (1.01 Sharpe) against momentum’s 76.62% (0.41) — and that both directional-change variants lost money before any transaction costs (−48.37% and −53.28%), isolating signal quality rather than trading friction as the cause of failure.',
+      'Traced the failure to trading intensity: the event-based rules generated 1,540 and 1,849 position changes against momentum’s 308, at five to six times the turnover, producing maximum drawdowns of −69.27% and −74.50%.',
+      'Showed the multi-threshold extension degraded rather than stabilized the signal, underperforming the single-threshold rule it was designed to make robust across every tested cost level.'
+    ],
+    links: [
+      { label: 'Project rundown', to: '/projects/etf-trading-strategy-backtest' },
+      { label: 'GitHub', href: 'https://github.com/filehunts/FEC_algo-trading-3' }
     ]
   }
 ]
@@ -199,7 +210,7 @@ function Home() {
             <motion.div variants={fadeUp} className="flex flex-col gap-4">
                 <h2 className="text-2xl font-semibold">Skills</h2>
                 <div className="flex flex-wrap gap-3">
-                    {['C++', 'Java', 'Rust', 'Python', 'NumPy', 'Pandas', 'Matplotlib', 'React.js', 'Git', 'HTML/CSS'].map(skill => (
+                    {['C++', 'Java', 'Rust', 'Python', 'NumPy', 'Pandas', 'Matplotlib', 'React.js', 'Git', 'HTML/CSS', 'MySQL', 'Ollama', 'Anthropic API', 'Android Studio'].map(skill => (
                         <span key={skill} className="rounded-full border border-white/10 bg-slate-900/60 px-4 py-2 text-xs uppercase tracking-widest text-slate-300">
                             {skill}
                         </span>

@@ -7,57 +7,57 @@ export const projects = [
     slug: 'slm-vs-llm-benchmark',
     title: 'SLM vs LLM Benchmark (SIGNLL)',
     period: '2025 - Present',
-    description: 'Benchmarked small language models against large language models for specialized tasks across quality, latency, and cost.',
+    description: 'Benchmarked local 3B models against Claude on financial reasoning tasks across quality, latency, and cost.',
     highlights: [
-      'Designed domain-focused evaluation prompts and test cases, tracking task-level metrics with error analysis.',
-      'Ran experiments across model variants and inference settings, summarizing findings for downstream use.'
+      'Measured a 22.4-point accuracy gap on FinQA between Claude Haiku 4.5 (80.0%) and the best local 3B model (57.6%), 95% CI [16.8, 28.0].',
+      'Showed the gap collapses on FOMC stance classification, so the deficit is specific to multi-step arithmetic reasoning.'
     ],
-    technologies: ['Python', 'LLMs', 'Evaluation', 'NLP'],
+    technologies: ['Python', 'Ollama', 'Anthropic API', 'Evaluation'],
     links: [{ label: 'GitHub', href: 'https://github.com/abhinav10raj/slm-vs-llm-benchmark' }],
     detail: {
-      tagline: 'Do you really need a frontier-scale model? A head-to-head look at small vs large language models on specialized tasks.',
+      tagline: 'Can a 3B model running on a consumer GPU match Claude on financial reasoning? On arithmetic, no — on language understanding, nearly.',
       sections: [
         {
           heading: 'The question',
           body: [
-            'Large language models are the default answer for almost every NLP task, but they are expensive to run and slow to respond. For narrow, specialized tasks, a much smaller model may get you most of the way there at a fraction of the cost and latency.',
-            'This project, part of my research with SIGNLL at UIUC, puts that intuition to the test: where do small language models (SLMs) hold their own against large language models (LLMs), and where do they fall short?'
+            'Large language models are the default answer for almost every NLP task, but they cost money per call. Small models run locally for free — the question is what you give up in quality.',
+            'This project, part of my work with SIGNLL at ACM@UIUC, measures that trade-off on financial tasks: where do small local models hold their own against hosted Claude models, and where do they fall short?'
           ]
         },
         {
           heading: 'Approach',
           body: [
-            'I built domain-focused evaluation prompts and a set of test cases for each task, then ran the same battery across multiple model variants and inference settings.',
-            'Every run is measured on three axes — output quality, latency, and cost — so the comparison reflects the real trade-offs of deploying a model, not just a single accuracy number.'
+            'I benchmarked Llama 3.2, Qwen 2.5, and Phi 3.5 locally through Ollama at 8-bit quantization on a single consumer GPU, at zero marginal API cost, against Claude Haiku 4.5 and Sonnet 4.6 through the Anthropic API.',
+            'The pipeline is a config-driven harness that persists per-item outputs, so any run can be re-scored reproducibly without re-querying the models.'
           ]
         },
         {
-          heading: 'What I measured',
+          heading: 'Results',
           body: [
-            'Quality is tracked at the task level with a manual error analysis, so failures are grouped by type rather than collapsed into one score.',
-            'Latency and cost are recorded per run to show what you actually pay — in time and dollars — for each increment of quality.'
+            'On FinQA financial numerical reasoning, Claude Haiku 4.5 scored 80.0% against 57.6% for the best local 3B model — a 22.4-point gap with a 95% bootstrap CI of [16.8, 28.0]. Sonnet 4.6 was highest at 85.2%.',
+            'On FOMC monetary-policy stance classification the gap collapses: a 17.7-point macro-F1 spread versus 3.5 on numerical reasoning. The small-model deficit is specific to multi-step arithmetic reasoning, not general financial language understanding.'
           ]
         },
         {
-          heading: 'How it evolved',
+          heading: 'Making the scores trustworthy',
           body: [
-            'The experiment design is iterative: observed failure modes and team feedback feed directly back into the next round of prompts and test cases.',
-            'Findings are summarized in a form meant to be reused downstream, so the benchmark is a reusable tool rather than a one-off report.'
+            'Small models format numeric answers inconsistently, so I built a unit-aware answer-extraction and dual-gold scoring layer that reaches 99.6% parse coverage.',
+            'I audited scoring tolerance across 434 boundary cases to confirm small-model errors were reasoning failures rather than parsing artifacts, and reported quality with multi-tolerance accuracy, bootstrap confidence intervals, and paired-bootstrap significance tests alongside latency and cost.'
           ]
         }
       ],
-      stack: ['Python', 'Large & small language models', 'Prompt + test-case design', 'Quantitative + error analysis'],
+      stack: ['Python', 'Ollama (Llama 3.2, Qwen 2.5, Phi 3.5)', 'Anthropic API', 'Bootstrap + paired-bootstrap statistics'],
       links: [{ label: 'View on GitHub', href: 'https://github.com/abhinav10raj/slm-vs-llm-benchmark' }]
     }
   },
   {
     slug: 'etf-trading-strategy-backtest',
     title: 'Time-Based vs Event-Based Trading Rules (FEC)',
-    period: 'Feb 2026 - Present',
+    period: 'Feb 2026 - Aug 2026',
     description: 'A research pipeline comparing time-based and event-based trading rules on a multi-asset ETF universe, built with the Financial Engineering Club.',
     highlights: [
       'Backtested Buy & Hold, Time-Series Momentum, and two Directional Change strategies on SPY/QQQ/TLT/GLD daily data (2010-2026).',
-      'Found Time-Series Momentum the only profitable active rule (76.62% return, 0.41 Sharpe); event-based rules lost money after costs.'
+      'Found no active rule beat Buy & Hold (649.70%, 1.01 Sharpe); both Directional Change variants lost money even before transaction costs.'
     ],
     technologies: ['Python', 'Pandas', 'Backtesting', 'Quant Finance'],
     links: [{ label: 'GitHub', href: 'https://github.com/filehunts/FEC_algo-trading-3' }],
@@ -127,12 +127,12 @@ export const projects = [
     slug: 'silentsync',
     title: 'SilentSync',
     period: '2023 - 2025',
-    description: 'Launched an app to support deaf employees and improve workplace communication.',
+    description: 'A native Android app for workplace communication accessibility for deaf employees.',
     highlights: [
-      'Conducted 100+ user interviews; iterated on product based on feedback from deaf users and retail partners.',
-      'Secured partnerships with local businesses, increasing usage by 40% and reaching 150+ downloads in the first month.'
+      'Supports speech-to-text conversation capture, quick-phrase shortcuts, and an ASL fingerspelling practice mode with live camera feedback.',
+      'Runs all machine learning on-device with no backend, so it works fully offline and no user data leaves the phone; distributed to users and local business partners and iterated on their feedback.'
     ],
-    technologies: ['Accessibility', 'User Research', 'Product Iteration'],
+    technologies: ['Android', 'On-device ML', 'Accessibility'],
     links: []
   }
 ]
